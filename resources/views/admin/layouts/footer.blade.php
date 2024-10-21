@@ -13,5 +13,22 @@
  <!-- /theme JS files -->
 
  @livewireScripts
+
+<script>
+    import Echo from 'laravel-echo';
+    window.io = require('socket.io-client');
+
+    window.Echo = new Echo({
+        broadcaster: 'socket.io',
+        host: `${process.env.MIX_ECHO_HOST}:${process.env.MIX_ECHO_PORT}`,
+    });
+
+    Echo.channel('tasks')
+        .listen('TaskStatusUpdated', (e) => {
+            console.log('Task updated:', e);
+            Livewire.emit('taskUpdated', e);
+        });
+</script>
+
 </body>
 </html>
