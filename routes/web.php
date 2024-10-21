@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Task\TaskList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/admin/tasks', TaskList::class)->name('admin.task.list');
